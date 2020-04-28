@@ -1,0 +1,13 @@
+@import './normalize.css';
+
+/* 获取根元素伪类 */
+:root{
+  --color: #333;
+  --mainColor: #fdde4a;
+  --mainFontColor: #6b4c10;
+  /* 定义变量  */
+}
+*{
+  margin: 0;padding: 0;
+  list-style: none;
+}
