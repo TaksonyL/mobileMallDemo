@@ -2,8 +2,10 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <router-view/>
-    <Tabbar :tabbar='tabbar' :tabbarConfig='tabbarConfig'/>
+    <keep-alive exclude="Detail,Commodity,Category,Shopcar">
+      <router-view/>
+    </keep-alive>
+    <Tabbar :tabbar='tabbar' :tabbarConfig='tabbarConfig' :tabList='tabList'/>
   </div>
 </template>
 
@@ -23,13 +25,13 @@ export default {
         {
           text: '首页',
           path: '/home',
-          img: '/images/tabbar/home0.png',
+          img: 'images/tabbar/home0.png',
           imgAct: '/images/tabbar/home.png'
         },
         {
           text: '分类',
           path: '/category',
-          img: '/images/tabbar/category0.png',
+          img: 'images/tabbar/category0.png',
           imgAct: '/images/tabbar/category.png'
         },
         {
@@ -49,11 +51,13 @@ export default {
         backgroundColor: 'var(--mainColor)',
         textColorAll: 'var(--mainFontColor)',
         textColorAllAct: 'white'
-      }
+      },
+      tabList: ['/home','/user','/shopcar','/category','/commodity','/login']
     }
   }
 }
 </script>
+
 
 <style>
 @import url('./assets/css/base.css');

@@ -1,7 +1,7 @@
 <template>
   <div class="banner">
     <swiper ref="mySwiper" :options="swiperOptions">
-      <swiper-slide v-for="(item,key) in bannerImg" :key='key'>
+      <swiper-slide :style="{ 'max-height': bannerHight? bannerHight+'px':null }" v-for="(item,key) in bannerImg" :key='key'>
         <img class="bannerImg" :src="item" alt=""/>
       </swiper-slide> 
       <div v-if="bannerConfig.pagination" class="swiper-pagination" slot="pagination"></div>
@@ -32,6 +32,9 @@ export default {
     },
     bannerMsg: {
       type: Object,
+    },
+    bannerHight: {
+      type: Number
     }
   },
   data() {

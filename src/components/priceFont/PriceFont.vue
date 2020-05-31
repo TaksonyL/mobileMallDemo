@@ -1,7 +1,6 @@
 <template>
-  <div :style="{fontSize : priceHandle.floatSize}" class="priceFont">
-    <!-- ¥<span :style="{fontSize : priceSize}">{{priceHandle.int}}</span>{{'.' + priceHandle.float}} -->
-    ¥<span :style="{fontSize : priceHandle.intSize}">{{priceHandle.int}}</span>{{'.' + priceHandle.float}}
+  <div v-if="priceMsg" :style="{fontSize : priceHandle.floatSize , fontWeight : priceDefault.fontWeight}" class="priceFont">
+    ¥<span :style="{fontSize : priceHandle.intSize}">{{priceHandle.int}}</span>{{priceHandle.float}}
   </div>
 </template>
 
@@ -12,7 +11,8 @@ export default {
     priceMsg: {
       price: Number,
       intSize: String,
-      floatSize: String
+      floatSize: String,
+      fontWeight: Number
     }
   },
   data() {
@@ -20,7 +20,8 @@ export default {
       priceDefault: {
         price: '11.1',
         intSize: '16px',
-        floatSize: '14px'
+        floatSize: '14px',
+        fontWeight: 500
       }
     }
   },
@@ -29,10 +30,16 @@ export default {
       if( this.priceMsg ){
         Object.assign(this.priceDefault,this.priceMsg)
       }
-      const {price,intSize,floatSize} = this.priceDefault
-      const priceNum = this.priceDefault.price.toString()
-      const [int,float] = priceNum.split('.') 
-      return {int,float,intSize,floatSize}
+      const {price,intSize,floatSize,fontWeight} = this.priceDefault
+      let priceNum = this.priceDefault.price*1
+      priceNum = priceNum.toString()
+      let [int,float] = priceNum.split('.')
+      if(!float){
+        float = ''
+      }else{
+        float = '.'+float
+      }
+      return {int,float,intSize,floatSize,fontWeight}
     }
   },
   

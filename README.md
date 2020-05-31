@@ -1,4 +1,7 @@
 # panda
+username = admin
+password = 123456
+baseUrl: '/panda2'
 
 ## Project setup
 ```

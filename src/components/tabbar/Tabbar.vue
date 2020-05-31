@@ -1,5 +1,5 @@
 <template>
-  <div class="tabbar">
+  <div class="tabbar" v-show="tabbarShow">
     <div class="tabbarWrap" :style="{backgroundColor: tabbarConfig.backgroundColor}">
       <tabbar-item v-for="(item,key) in tabbarChange" :key="key" :tabbarItem='item'/>
     </div>
@@ -13,6 +13,12 @@ export default {
   name: 'Tabbar',
   components: {
     TabbarItem
+  },
+
+  data() {
+    return {
+      tabbarShow: true
+    }
   },
 
   props: {
@@ -34,6 +40,9 @@ export default {
           textColorAllAct: '#aaa'
         }
       }
+    },
+    tabList: {
+      type: Array
     }
   },
 
@@ -48,11 +57,22 @@ export default {
         if( !item.imgAct ){
           item.imgAct = item.img
         }
+        item.img = process.env.BASE_URL+item.img
+        item.imgAct = process.env.BASE_URL+item.imgAct
         // console.log(this.tabbarConfig)
       }
       return this.tabbar
     }
   },
+
+  watch: {
+    $route(to,from) {
+      if(this.tabList){
+        this.tabList.indexOf(to.path) >  -1 ? this.tabbarShow = true : this.tabbarShow = false
+      }
+    }
+  }
+
 }
 </script>
 
@@ -69,6 +89,7 @@ export default {
   /* background-color: pink; */
   display: flex;
   list-style: none;
+  box-shadow: 0 -1px 5px -1px rgba(0,0,0,.5);
 }
 </style>
  

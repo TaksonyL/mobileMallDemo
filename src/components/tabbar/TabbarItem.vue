@@ -28,9 +28,7 @@ export default {
   methods: {
     routerTo(path){
       if( this.$route.path !== path ){
-        this.$router.replace(path);
-        // console.log(path)
-        console.log('1')
+        this.$router.replace(path)
       }      
     }
   }

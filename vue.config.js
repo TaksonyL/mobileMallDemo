@@ -9,5 +9,6 @@ module.exports = {
         'network' : '@/network'
       }
     }
-  }
+  },
+  publicPath: '/panda2/'
 }

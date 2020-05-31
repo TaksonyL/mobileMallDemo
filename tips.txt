@@ -1,0 +1,4 @@
+请将dist内文件放于服务器根目录的/panda下
+
+username：admin
+password：123456
